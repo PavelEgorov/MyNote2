@@ -21,6 +21,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
-        android:elevation="@android:dimen/app_icon_size"/>
+        android:elevation="@android:dimen/dialog_min_width_major"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
