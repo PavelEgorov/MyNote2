@@ -1,7 +1,9 @@
 package com.example.mynote2
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -49,5 +51,16 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+        R.id.tb_item_back -> {
+            Log.d("toobar", "onOptionsItemSelected back")
+            onBackPressed()
+            return true
+        }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }
