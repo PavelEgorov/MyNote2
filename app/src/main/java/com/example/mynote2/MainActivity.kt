@@ -1,6 +1,7 @@
 package com.example.mynote2
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     val EXTRA_THEME = "EXTRA_THEME"
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    var theme: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -88,26 +90,38 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.tb_item_light -> {
-                setTheme(R.style.AppTheme_Light)
+                theme = item.itemId
+                recreate()
                 return true
             }
             R.id.tb_item_dark -> {
-                setTheme(R.style.AppTheme_Dark)
+                theme = item.itemId
+                recreate()
                 return true
             }
             R.id.tb_item_green -> {
-                setTheme(R.style.AppTheme_Green)
+                theme = item.itemId
+                recreate()
                 return true
             }
             R.id.tb_item_yellow -> {
-                setTheme(R.style.AppTheme_Yellow)
+                theme = item.itemId
+                recreate()
                 return true
             }
             R.id.tb_item_red -> {
-                setTheme(R.style.AppTheme_Red)
+                theme = item.itemId
+                recreate()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        theme?.let {
+            outState.putInt(EXTRA_THEME, it)
         }
     }
 }
