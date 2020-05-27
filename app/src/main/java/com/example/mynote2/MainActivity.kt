@@ -4,24 +4,48 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
-
+    val EXTRA_THEME = "EXTRA_THEME"
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (savedInstanceState != null) {
+
+            val themeNumber = savedInstanceState.getInt(EXTRA_THEME);
+
+            when (themeNumber) {
+                R.id.tb_item_light -> {
+                    setTheme(R.style.AppTheme_Light)
+                }
+                R.id.tb_item_dark -> {
+                    setTheme(R.style.AppTheme_Dark)
+                }
+                R.id.tb_item_green -> {
+                    setTheme(R.style.AppTheme_Green)
+                }
+                R.id.tb_item_yellow -> {
+                    setTheme(R.style.AppTheme_Yellow)
+                }
+                R.id.tb_item_red -> {
+                    setTheme(R.style.AppTheme_Red)
+                }
+                else -> setTheme(R.style.AppTheme)
+            }
+        }
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -29,15 +53,18 @@ class MainActivity : AppCompatActivity() {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -54,12 +81,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-        R.id.tb_item_back -> {
-            Log.d("toobar", "onOptionsItemSelected back")
-            onBackPressed()
-            return true
-        }
+        when (item.itemId) {
+            R.id.tb_item_back -> {
+                Log.d("toobar", "onOptionsItemSelected back")
+                onBackPressed()
+                return true
+            }
+            R.id.tb_item_light -> {
+                setTheme(R.style.AppTheme_Light)
+                return true
+            }
+            R.id.tb_item_dark -> {
+                setTheme(R.style.AppTheme_Dark)
+                return true
+            }
+            R.id.tb_item_green -> {
+                setTheme(R.style.AppTheme_Green)
+                return true
+            }
+            R.id.tb_item_yellow -> {
+                setTheme(R.style.AppTheme_Yellow)
+                return true
+            }
+            R.id.tb_item_red -> {
+                setTheme(R.style.AppTheme_Red)
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }

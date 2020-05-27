@@ -2,6 +2,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/tb_item_light"
+        android:icon="@color/colorBackgroundLight"
+        android:title="light"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/tb_item_dark"
+        android:icon="@color/colorBackgroundDark"
+        app:showAsAction="ifRoom"
+        android:title="dark" />
+    <item
+        android:id="@+id/tb_item_green"
+        android:icon="@color/colorBackgroundGreen"
+        app:showAsAction="ifRoom"
+        android:title="green" />
+    <item
+        android:id="@+id/tb_item_yellow"
+        android:icon="@color/colorBackgroundYellow"
+        app:showAsAction="ifRoom"
+        android:title="yellow" />
+    <item
+        android:id="@+id/tb_item_red"
+        android:icon="@color/colorBackgroundRed"
+        app:showAsAction="ifRoom"
+        android:title="red" />
+
+
     <item
         android:id="@+id/tb_item_back"
         android:icon="@android:drawable/ic_menu_revert"
